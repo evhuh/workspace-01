@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xue's Workspace</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .notepad {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-right: 20px; /* Add margin to create separation */
+        }
+
+        .textbooks {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Add spacing to form elements */
+        .textbooks form label,
+        .textbooks form input {
+            margin-bottom: 10px;
+        }
+
+        .textbooks form input[type="submit"] {
+            margin-top: 10px;
+        }
+
+        /* Style for textbook boxes */
+        .textbook {
+            background-color: #fce4ec; /* Pale pink background */
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        .textbooks form input[type="submit"] {
+            margin-top: 10px;
+            border-radius: 20px; /* Make the button rounder */
+            background-color: #fce4ec; /* Pale pink background */
+            padding: 10px 20px; /* Add padding for better appearance */
+            border: none; /* Remove default button border */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+
+        .textbooks form input[type="submit"]:hover {
+            background-color: #f8bbd0; /* Lighter pink on hover */
+        }
+        .notepad textarea,
+        .textbooks form input[type="text"],
+        .textbooks form input[type="url"] {
+            border: 2px solid #fce4ec; /* Pink outline */
+            border-radius: 5px; /* Rounded corners */
+            padding: 8px; /* Padding for input fields */
+        }
+
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Xue's Workspace</h1>
+    <div class="container">
+        <!-- Notepad -->
+        <div class="notepad">
+            <h2>Notepad</h2>
+            <textarea rows="10" cols="30" placeholder="Write your notes here..."></textarea>
+        </div>
+        <!-- Textbooks -->
+        <div class="textbooks">
+            <h2>Add Textbook</h2>
+            <form action="/" method="post">
+                <label for="textbook_name">Textbook Name:</label>
+                <input type="text" id="textbook_name" name="textbook_name" required><br>
+                <label for="url_link">URL Link:</label>
+                <input type="url" id="url_link" name="url_link" required><br>
+                <input type="submit" value="Add Textbook">
+            </form>
+            <h2>Textbooks</h2>
+            <div id="textbooks">
+                {% for textbook in textbooks %}
+                    <div class="textbook">
+                        <p><strong>{{ textbook.name }}</strong></p>
+                        <p><a href="{{ textbook.url }}" target="_blank">{{ textbook.url }}</a></p>
+                        <form action="/" method="post">
+                            <input type="hidden" name="remove_url" value="{{ textbook.url }}">
+                            <input type="submit" value="Remove Textbook">
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
