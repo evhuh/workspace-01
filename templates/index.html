@@ -97,16 +97,10 @@
             </form>
             <h2>Textbooks</h2>
             <div id="textbooks">
-                {% for textbook in textbooks %}
-                    <div class="textbook">
-                        <p><strong>{{ textbook.name }}</strong></p>
-                        <p><a href="{{ textbook.url }}" target="_blank">{{ textbook.url }}</a></p>
-                        <form action="/" method="post">
-                            <input type="hidden" name="remove_url" value="{{ textbook.url }}">
-                            <input type="submit" value="Remove Textbook">
-                        </form>
-                    </div>
-                {% endfor %}
+                <div class="textbook">
+                    <p><strong>Business Law | Text and Cases - Clarkson, Miller</strong></p>
+                    <p><a href="https://drive.google.com/file/d/1L9ibHYZNR5U0tHpTTI3GvPZvmd-pziLz/view?usp=sharing" target="_blank">Link</a></p>
+                </div>
             </div>
         </div>
     </div>
